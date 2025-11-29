@@ -1,0 +1,60 @@
+<div class="admin-container">
+  <div class="container-fluid py-4">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h1 class="page-title mb-2">
+          ⚙️ Panel de Administración
+        </h1>
+        <p class="text-muted">Gestiona libros, categorías y préstamos</p>
+      </div>
+    </div>
+
+    <!-- Navegación -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-3">
+            <div class="card h-100 border-primary" style="cursor: pointer;" routerLink="/admin/libros" routerLinkActive="active">
+              <div class="card-body text-center">
+                <h2 class="mb-3">📚</h2>
+                <h5 class="card-title">Gestión de Libros</h5>
+                <p class="card-text text-muted">Administra el inventario de libros</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card h-100 border-info" style="cursor: pointer;" routerLink="/admin/categorias" routerLinkActive="active">
+              <div class="card-body text-center">
+                <h2 class="mb-3">🏷️</h2>
+                <h5 class="card-title">Gestión de Categorías</h5>
+                <p class="card-text text-muted">Administra las categorías de libros</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card h-100 border-success" style="cursor: pointer;" routerLink="/admin/usuarios" routerLinkActive="active">
+              <div class="card-body text-center">
+                <h2 class="mb-3">👥</h2>
+                <h5 class="card-title">Gestión de Usuarios</h5>
+                <p class="card-text text-muted">Administra los usuarios del sistema</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card h-100 border-warning" style="cursor: pointer;" routerLink="/admin/prestamos" routerLinkActive="active">
+              <div class="card-body text-center">
+                <h2 class="mb-3">📖</h2>
+                <h5 class="card-title">Gestión de Préstamos</h5>
+                <p class="card-text text-muted">Administra préstamos y multas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Router outlet para mostrar los componentes hijos -->
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow-sm border-0" style="border-radius: 1rem;">
+        <div class="card-body p-4">
+          <h2 class="card-title text-center mb-4" style="color: var(--color-dark);">
+            Iniciar Sesión
+          </h2>
+          <form (ngSubmit)="submit()" [formGroup]="form">
+            <div class="mb-3">
+              <label class="form-label">Usuario</label>
+              <input
+                class="form-control"
+                formControlName="username"
+                type="text"
+                autocomplete="username"
+                [class.is-invalid]="form.get('username')?.invalid && form.get('username')?.touched"
+              />
+              <div class="invalid-feedback" *ngIf="form.get('username')?.invalid && form.get('username')?.touched">
+                El usuario es requerido
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Contraseña</label>
+              <input
+                class="form-control"
+                formControlName="password"
+                type="password"
+                autocomplete="current-password"
+                [class.is-invalid]="form.get('password')?.invalid && form.get('password')?.touched"
+              />
+              <div class="invalid-feedback" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+                La contraseña es requerida
+              </div>
+            </div>
+            <div *ngIf="error" class="alert alert-danger">
+              {{ error }}
+            </div>
+            <button
+              class="btn btn-primary w-100 mt-3"
+              type="submit"
+              [disabled]="loading"
+            >
+              <span *ngIf="!loading">Ingresar</span>
+              <span *ngIf="loading">
+                <span class="spinner-border spinner-border-sm me-2"></span>
+                Validando...
+              </span>
+            </button>
+          </form>
+          <div class="text-center mt-3">
+            <p class="mb-0">
+              ¿No tienes cuenta?
+              <a routerLink="/registro" style="color: var(--color-primary);">Regístrate aquí</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

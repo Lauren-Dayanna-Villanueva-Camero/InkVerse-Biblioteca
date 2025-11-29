@@ -1,0 +1,411 @@
+.historial-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 30px 0;
+}
+
+/* Header Section */
+.header-section {
+  text-align: center;
+}
+
+.page-title {
+  color: white;
+  font-weight: bold;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.03em;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Stat Cards */
+.stat-card {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-left: 5px solid;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.stat-card-primary {
+  border-left-color: #667eea;
+}
+
+.stat-card-danger {
+  border-left-color: #dc3545;
+}
+
+.stat-card-success {
+  border-left-color: #28a745;
+}
+
+.stat-icon {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1;
+}
+
+.stat-card-primary .stat-number {
+  color: #667eea;
+}
+
+.stat-card-danger .stat-number {
+  color: #dc3545;
+}
+
+.stat-card-success .stat-number {
+  color: #28a745;
+}
+
+.stat-label {
+  color: #6c757d;
+  margin: 0.5rem 0 0 0;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* Filter Card */
+.filter-card {
+  border-radius: 15px;
+  border: none;
+  overflow: hidden;
+}
+
+.filter-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1.25rem;
+  font-weight: 600;
+}
+
+.filter-label {
+  color: #495057;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.filter-select {
+  border-radius: 8px;
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+  padding: 0.6rem 1rem;
+}
+
+.filter-select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.stats-badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.stat-badge {
+  padding: 0.6rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.badge-total {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.badge-prestados {
+  background: #667eea;
+  color: white;
+}
+
+.badge-multas {
+  background: #dc3545;
+  color: white;
+}
+
+.badge-devueltos {
+  background: #28a745;
+  color: white;
+}
+
+/* Table Card */
+.table-card {
+  border-radius: 15px;
+  border: none;
+  overflow: hidden;
+}
+
+.table-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1.25rem;
+  font-weight: 600;
+}
+
+.prestamos-table {
+  margin: 0;
+  background: white;
+}
+
+.prestamos-table thead th {
+  background: linear-gradient(135deg, #495057 0%, #343a40 100%);
+  color: white;
+  border: none;
+  font-weight: 600;
+  padding: 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+.prestamos-table tbody td {
+  padding: 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.prestamo-row {
+  transition: all 0.3s ease;
+}
+
+.prestamo-row:hover {
+  background-color: #f8f9fa;
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Libro Cell */
+.libro-cell {
+  min-width: 250px;
+}
+
+.libro-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.libro-titulo {
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.libro-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.libro-autor {
+  color: #6c757d;
+  font-size: 0.85rem;
+}
+
+.badge-categoria {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Fechas */
+.fecha-text {
+  color: #495057;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.fecha-limite-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.badge-vencido {
+  background: #dc3545;
+  color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+/* Badges de días restantes */
+.badge {
+  padding: 0.5rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: inline-block;
+}
+
+.badge.bg-success {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+  color: white;
+}
+
+.badge.bg-warning {
+  background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%) !important;
+  color: #212529;
+}
+
+.badge.bg-danger {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%) !important;
+  color: white;
+}
+
+/* Estado Badge */
+.estado-badge {
+  padding: 0.5rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.estado-badge.bg-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white;
+}
+
+.estado-badge.bg-danger {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%) !important;
+  color: white;
+}
+
+.estado-badge.bg-success {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+  color: white;
+}
+
+.badge-retraso {
+  background: #dc3545;
+  color: white;
+  padding: 0.4rem 0.7rem;
+  border-radius: 15px;
+  font-weight: 600;
+}
+
+.multa-text {
+  color: #dc3545;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Loading and Empty States */
+.loading-container {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.empty-state h4 {
+  color: #495057;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  color: #6c757d;
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .stat-icon {
+    font-size: 2.5rem;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .prestamos-table {
+    font-size: 0.85rem;
+  }
+
+  .prestamos-table thead th,
+  .prestamos-table tbody td {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .libro-cell {
+    min-width: 200px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.prestamo-row {
+  animation: fadeIn 0.3s ease;
+}
+
+.stat-card {
+  animation: fadeIn 0.5s ease;
+}

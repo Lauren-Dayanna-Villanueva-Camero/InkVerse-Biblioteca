@@ -1,0 +1,21 @@
+.card {
+  background: linear-gradient(145deg, #ffffff, var(--color-light-2));
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.15);
+}
+
+.card-title {
+  color: var(--color-dark);
+  font-weight: 700;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+

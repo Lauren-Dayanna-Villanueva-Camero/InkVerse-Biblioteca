@@ -1,0 +1,175 @@
+<div class="historial-container">
+  <div class="container-fluid py-4">
+    <!-- Header -->
+    <div class="header-section mb-5">
+      <h1 class="page-title mb-3">
+        📚 Mi Historial de Préstamos
+      </h1>
+      <p class="subtitle">Consulta tus préstamos, multas y fechas de entrega</p>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="row g-4 mb-4">
+      <div class="col-md-4">
+        <div class="stat-card stat-card-primary">
+          <div class="stat-icon">📖</div>
+          <div class="stat-content">
+            <h2 class="stat-number">{{ getPrestadosCount() }}</h2>
+            <p class="stat-label">En Préstamo</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stat-card stat-card-danger">
+          <div class="stat-icon">⚠️</div>
+          <div class="stat-content">
+            <h2 class="stat-number">{{ getMultasCount() }}</h2>
+            <p class="stat-label">Con Multa</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stat-card stat-card-success">
+          <div class="stat-icon">✅</div>
+          <div class="stat-content">
+            <h2 class="stat-number">{{ getDevueltosCount() }}</h2>
+            <p class="stat-label">Devueltos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="card filter-card shadow-lg mb-4">
+      <div class="card-header filter-header">
+        <h5 class="mb-0">
+          🔍 Buscar y Filtrar
+        </h5>
+      </div>
+      <div class="card-body">
+        <div class="row g-3 align-items-end">
+          <div class="col-md-4">
+            <label class="form-label filter-label">
+              <strong>Filtrar por Estado:</strong>
+            </label>
+            <select class="form-select filter-select" [(ngModel)]="filtroEstado">
+              <option value="TODOS">Todos los préstamos</option>
+              <option value="PRESTADO">En Préstamo</option>
+              <option value="MULTA">Con Multa</option>
+              <option value="DEVUELTO">Devueltos</option>
+            </select>
+          </div>
+          <div class="col-md-8">
+            <div class="stats-badges">
+              <span class="stat-badge badge-total">
+                <strong>Total:</strong> {{ prestamos.length }}
+              </span>
+              <span class="stat-badge badge-prestados">
+                <strong>Prestados:</strong> {{ getPrestadosCount() }}
+              </span>
+              <span class="stat-badge badge-multas">
+                <strong>En Multa:</strong> {{ getMultasCount() }}
+              </span>
+              <span class="stat-badge badge-devueltos">
+                <strong>Devueltos:</strong> {{ getDevueltosCount() }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla de préstamos -->
+    <div class="card table-card shadow-lg">
+      <div class="card-header table-header">
+        <h5 class="mb-0">
+          📖 Mis Préstamos
+        </h5>
+      </div>
+      <div class="card-body">
+        <div *ngIf="loading" class="loading-container">
+          <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+            <span class="visually-hidden">Cargando...</span>
+          </div>
+          <p class="mt-3 text-muted">Cargando tu historial...</p>
+        </div>
+
+        <div *ngIf="!loading && prestamos.length === 0" class="empty-state">
+          <div class="empty-icon">📚</div>
+          <h4>No tienes préstamos registrados</h4>
+          <p class="text-muted">Cuando prestes un libro, aparecerá aquí tu historial.</p>
+        </div>
+
+        <div *ngIf="!loading && prestamos.length > 0 && filtrarPrestamos().length === 0" class="empty-state">
+          <div class="empty-icon">🔍</div>
+          <h4>No se encontraron préstamos</h4>
+          <p class="text-muted">No hay préstamos que coincidan con el filtro seleccionado.</p>
+        </div>
+
+        <div *ngIf="!loading && filtrarPrestamos().length > 0" class="table-responsive">
+          <table class="table table-hover prestamos-table">
+            <thead>
+              <tr>
+                <th>📖 Libro</th>
+                <th>📅 Fecha Préstamo</th>
+                <th>⏰ Fecha Límite</th>
+                <th>⏳ Días Restantes</th>
+                <th>📊 Estado</th>
+                <th>⚠️ Días Retraso</th>
+                <th>💰 Multa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let prestamo of filtrarPrestamos()" class="prestamo-row">
+                <td class="libro-cell">
+                  <div class="libro-info">
+                    <strong class="libro-titulo">{{ prestamo.libro.titulo }}</strong>
+                    <div class="libro-meta">
+                      <small class="libro-autor">{{ prestamo.libro.autor }}</small>
+                      <span class="badge badge-categoria" *ngIf="prestamo.libro.categoria">
+                        {{ prestamo.libro.categoria.nombre }}
+                      </span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span class="fecha-text">{{ formatearFecha(prestamo.fechaPrestamo) }}</span>
+                </td>
+                <td>
+                  <div class="fecha-limite-wrapper">
+                    <span class="fecha-text">{{ formatearFecha(prestamo.fechaLimite) }}</span>
+                    <span class="badge badge-vencido" *ngIf="estaVencido(prestamo.fechaLimite) && prestamo.estado === 'PRESTADO'">
+                      ⚠️ Vencido
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <span class="badge" [ngClass]="getDiasRestantesClass(prestamo.fechaLimite)">
+                    {{ calcularDiasRestantes(prestamo.fechaLimite) }} días
+                  </span>
+                </td>
+                <td>
+                  <span class="badge estado-badge" [ngClass]="getEstadoBadgeClass(prestamo.estado)">
+                    {{ getEstadoTexto(prestamo.estado) }}
+                  </span>
+                </td>
+                <td>
+                  <span class="badge badge-retraso" *ngIf="tieneDiasRetraso(prestamo)">
+                    {{ prestamo.diasRetraso }} días
+                  </span>
+                  <span class="text-muted" *ngIf="!tieneDiasRetraso(prestamo)">-</span>
+                </td>
+                <td>
+                  <strong class="multa-text" *ngIf="tieneMulta(prestamo)">
+                    {{ formatearMoneda(prestamo.valorMulta) }}
+                  </strong>
+                  <span class="text-muted" *ngIf="!tieneMulta(prestamo)">-</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

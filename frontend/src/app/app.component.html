@@ -1,0 +1,154 @@
+<div style="min-height: 100vh;">
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">
+        <span class="brand-icon">📚</span>
+        <span class="brand-text">InkVerse Biblioteca</span>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item" *ngIf="!authService.isLoggedIn()">
+            <a class="nav-link nav-link-btn" routerLink="/login">
+              <span class="nav-icon">🔐</span>
+              <span>Ingresar</span>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="!authService.isLoggedIn()">
+            <a class="nav-link nav-link-btn nav-link-primary" routerLink="/registro">
+              <span class="nav-icon">✏️</span>
+              <span>Registrarse</span>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="authService.isLoggedIn() && authService.isAdmin()">
+            <a class="nav-link nav-link-btn nav-link-admin" routerLink="/admin">
+              <span class="nav-icon">⚙️</span>
+              <span>Panel Admin</span>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="authService.isLoggedIn() && !authService.isAdmin()">
+            <a class="nav-link nav-link-btn" routerLink="/mi-historial">
+              <span class="nav-icon">📚</span>
+              <span>Mi Historial</span>
+            </a>
+          </li>
+          <li class="nav-item user-section" *ngIf="authService.isLoggedIn()">
+            <div class="user-info">
+              <span class="user-greeting">
+                <span class="greeting-icon">👋</span>
+                <span class="greeting-text">Hola, <strong>{{ authService.getUsername() }}</strong></span>
+              </span>
+              <span *ngIf="authService.isAdmin()" class="badge badge-admin">ADMIN</span>
+            </div>
+            <button class="btn btn-logout" (click)="logout()">
+              <span class="logout-icon">🚪</span>
+              <span>Salir</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container my-4" style="min-height: calc(100vh - 200px);">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="footer-custom">
+    <div class="container">
+      <div class="row g-4">
+        <!-- Información de la Biblioteca -->
+        <div class="col-md-4 col-sm-6">
+          <div class="footer-section">
+            <h5 class="footer-title">
+              <span class="footer-icon">📚</span>
+              InkVerse Biblioteca
+            </h5>
+            <p class="footer-text">
+              Tu biblioteca de confianza. Accede a miles de libros y gestiona tus préstamos de manera fácil y rápida.
+            </p>
+          </div>
+        </div>
+
+        <!-- Enlaces Rápidos -->
+        <div class="col-md-2 col-sm-6">
+          <div class="footer-section">
+            <h5 class="footer-title">Enlaces Rápidos</h5>
+            <ul class="footer-links">
+              <li><a routerLink="/" class="footer-link">Inicio</a></li>
+              <li><a routerLink="/libros" class="footer-link">Catálogo</a></li>
+              <li *ngIf="!authService.isLoggedIn()"><a routerLink="/login" class="footer-link">Iniciar Sesión</a></li>
+              <li *ngIf="!authService.isLoggedIn()"><a routerLink="/registro" class="footer-link">Registrarse</a></li>
+              <li *ngIf="authService.isLoggedIn()"><a routerLink="/mi-historial" class="footer-link">Mi Historial</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Información de Contacto -->
+        <div class="col-md-3 col-sm-6">
+          <div class="footer-section">
+            <h5 class="footer-title">Contacto</h5>
+            <ul class="footer-contact">
+              <li>
+                <span class="contact-icon">📧</span>
+                <span>biblioteca&#64;inkverse.com</span>
+              </li>
+              <li>
+                <span class="contact-icon">📞</span>
+                <span>+57 (1) 234-5678</span>
+              </li>
+              <li>
+                <span class="contact-icon">📍</span>
+                <span>Calle 123 #45-67, Bogotá</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Redes Sociales -->
+        <div class="col-md-3 col-sm-6">
+          <div class="footer-section">
+            <h5 class="footer-title">Síguenos</h5>
+            <div class="social-links">
+              <a href="#" class="social-link" title="Facebook">
+                <span class="social-icon">📘</span>
+                <span>Facebook</span>
+              </a>
+              <a href="#" class="social-link" title="Twitter">
+                <span class="social-icon">🐦</span>
+                <span>Twitter</span>
+              </a>
+              <a href="#" class="social-link" title="Instagram">
+                <span class="social-icon">📷</span>
+                <span>Instagram</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Línea divisoria y Copyright -->
+      <div class="footer-bottom">
+        <div class="footer-divider"></div>
+        <div class="footer-copyright">
+          <p class="copyright-text">
+            © {{ currentYear }} InkVerse Biblioteca. Todos los derechos reservados.
+          </p>
+          <p class="copyright-subtext">
+            Desarrollado con ❤️ para amantes de la lectura
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

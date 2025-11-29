@@ -1,0 +1,48 @@
+<div class="modal fade" id="loginModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Iniciar sesión</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="submit()" [formGroup]="form">
+          <div class="mb-3">
+            <label class="form-label">Usuario</label>
+            <input
+              class="form-control"
+              formControlName="username"
+              type="text"
+              autocomplete="username"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <input
+              class="form-control"
+              formControlName="password"
+              type="password"
+              autocomplete="current-password"
+            />
+          </div>
+          <div *ngIf="error" class="alert alert-danger py-2">
+            {{ error }}
+          </div>
+          <button
+            class="btn btn-primary w-100"
+            type="submit"
+            [disabled]="loading"
+          >
+            <span *ngIf="!loading">Ingresar</span>
+            <span *ngIf="loading">
+              <span class="spinner-border spinner-border-sm me-2"></span>
+              Validando...
+            </span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
